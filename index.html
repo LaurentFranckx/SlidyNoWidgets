@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Interactive linear model comparison</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Interactive linear model comparison">
+  <meta name="author" content="Laurent Franckx">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Interactive linear model comparison</h1>
+    <h2>Illustration with the mtcars dataset</h2>
+    <p>Laurent Franckx<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Introduction</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>app addresses  determinants of  miles per callon (MPG) of passenger cars </li>
+<li>mtcars dataset contains 32 observations on 11 variables</li>
+<li>app allows user to compare two different linear model specifications with different regressors</li>
+<li>user can fine tune displayed information</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Output info of the app</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>default summary for the dataset</p></li>
+<li><p>histogram for chosen variable</p></li>
+<li><p>default summary tables for each model</p></li>
+<li><p>model diagnostics  to identify influential observations.</p></li>
+<li><p>plots to identify outliers and influential observations </p></li>
+<li><p>ANOVA table comparing the two models if embedded </p></li>
+<li><p>The complete app can be found at: <a href="https://lfranckx.shinyapps.io/course_shiny_project/">https://lfranckx.shinyapps.io/course_shiny_project/</a></p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h3>Illustration:  histogram and model output</h3>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">var_his &lt;- &quot;mpg&quot;; break_ch &lt;- 10
+hist(mtcars[, var_his] , xlab =  var_his, main = paste(&quot;Histogram of&quot;, var_his), breaks = break_ch)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-1-1.png" alt="plot of chunk unnamed-chunk-1"> </p>
+
+<p>--- .class #id </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">regressors &lt;- c(&quot;wt&quot; = &quot;wt&quot;, &quot;qsec&quot; = &quot;qsec&quot;,  &quot;gear&quot;= &quot;gear&quot;, &quot;carb&quot;= &quot;carb&quot;)
+dataforlm &lt;- mtcars[, c(&quot;mpg&quot;,regressors)]
+fit_gear &lt;- lm(mpg  ~ ., data =  dataforlm )
+fit_gear
+</code></pre>
+
+<pre><code>## 
+## Call:
+## lm(formula = mpg ~ ., data = dataforlm)
+## 
+## Coefficients:
+## (Intercept)           wt         qsec         gear         carb  
+##     13.5291      -3.7019       0.7613       1.9228      -0.7848
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Introduction'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Output info of the app'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Illustration:  histogram and model output'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title=''>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
